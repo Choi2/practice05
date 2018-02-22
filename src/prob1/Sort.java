@@ -1,5 +1,7 @@
 package prob1;
 
+import java.util.Arrays;
+
 public class Sort {
 
 	public static void main(String[] arg) {
@@ -15,11 +17,13 @@ public class Sort {
 		}
 		
 		for(int i = 0; i < array.length - 1; i ++) {
-			for(int j = i + 1; j < array.length; j ++) {
-				if(array[i] < array[j]) {
-					swap(array, i, j);
+			for(int j = 1; j < array.length; j ++) {
+				if(array[j - 1] < array[j]) {
+					swap(array, j - 1, j);
 				}
 			}
+			
+//			System.out.println(Arrays.toString(array));
 		}
 		
 		System.out.println( "\nAfter Sort." );
