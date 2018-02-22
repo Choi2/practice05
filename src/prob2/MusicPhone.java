@@ -7,9 +7,12 @@ public class MusicPhone extends Phone {
 		if ( function.equals("음악") ) {
 			playMusic();
 			return;
+		} else if(function.equals("앱")) {
+			System.out.println("앱실행");
+		} else {
+			super.execute( function );
 		}
 		
-		super.execute( function );
 	}
 
 	protected void playMusic() {
