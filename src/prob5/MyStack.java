@@ -1,37 +1,40 @@
 package prob5;
 
-public class MyStack {
+public class MyStack<T> {
 
-	private String[] buffer;
+	private T[] buffer;
 	private int top;
 	
+	@SuppressWarnings("unchecked")
 	public MyStack(int size) {
-		buffer = new String[size];
+		top = -1;
+		buffer = (T[]) new Object[size];
 	}
 	
-	public void push(String value) {
+	@SuppressWarnings("unchecked")
+	public void push(T value) {
 		
-		if(top == buffer.length) {
-			String temp[] = new String[buffer.length * 2];
+		if((top + 1) == buffer.length) {
+			Object[] temp = new Object[buffer.length * 2];
 			for(int i = 0; i < buffer.length; i ++) {
 				temp[i] = buffer[i];
 			}
-			buffer = temp;
+			buffer = (T[]) temp;
 		}
 		
-		buffer[top++] = value;
-/*		System.out.println(Arrays.toString(buffer));*/
+		buffer[++top] = value;
+		/*System.out.println(Arrays.toString(buffer)); */
 	}
 	
 	public boolean isEmpty() {
-		return (top == 0) ? true : false;
+		return (top == -1);
 	}
 	
-	public String pop() throws MyStackException {	
-		if((top - 1) == -1) {
+	public T pop() throws MyStackException {	
+		if(isEmpty()) {
 			throw new MyStackException();
 		}
-		return buffer[--top];
+		return buffer[top--];
 	}
 	
 }
